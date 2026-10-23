@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <title>Anagrafica 1.0</title>
+        <style>
+            /* Reset e Stile Generale del Corpo della Pagina */
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f7f5fa; /* Sfondo leggermente tinto di lilla */
+                color: #333;
+                margin: 0;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            h1 {
+                color: #4a2e80; /* Titolo coordinato sui toni del viola */
+                margin-bottom: 30px;
+            }
+
+            /* Stile per tutti gli Input della pagina */
+            input[type="text"], input[type="number"] {
+                padding: 10px 15px;
+                border: 1px solid #c8bed6;
+                border-radius: 4px;
+                font-size: 14px;
+                outline: none;
+                margin: 0 5px 20px 5px;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            input[type="text"]:focus, input[type="number"]:focus {
+                border-color: #8e44ad;
+                box-shadow: 0 0 5px rgba(142, 68, 173, 0.3);
+            }
+
+            /* Dimensioni specifiche per ciascun campo tramite il suo ID originale */
+            #nomeTab, #cognomeTab { width: 150px; }
+            #indirizzoTab { width: 200px; }
+            #cittàTab { width: 120px; }
+            #etàTab { width: 110px; }
+
+            /* Pulsante "Aggiungi" in Viola Magico */
+            button {
+                background-color: #9b59b6;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 14px;
+                font-weight: bold;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-left: 5px;
+                transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+                box-shadow: 0 2px 5px rgba(155, 89, 182, 0.4);
+            }
+
+            button:hover {
+                background-color: #8e44ad;
+                box-shadow: 0 4px 10px rgba(142, 68, 173, 0.6);
+            }
+
+            button:active {
+                transform: scale(0.98);
+            }
+
+            /* Tabella a Griglia */
+            table#anagrafe {
+                border-collapse: collapse;
+                width: 100%;
+                max-width: 900px;
+                margin: 20px auto 0 auto;
+                background-color: #ffffff;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                border-radius: 8px;
+                overflow: hidden;
+                border: 2px solid #6c5b7b !important;
+            }
+
+            /* Celle e Intestazioni con bordi interni visibili per la griglia */
+            table#anagrafe th, table#anagrafe td {
+                padding: 12px 15px;
+                text-align: left;
+                border: 1px solid #d1c7bd !important;
+            }
+
+            /* Intestazione della Tabella - Viola Scuro Profondo */
+            table#anagrafe th {
+                background-color: #4a3b5c;
+                color: #ffffff;
+                text-transform: uppercase;
+                font-size: 13px;
+                letter-spacing: 0.5px;
+            }
+
+            /* --- EFFETTO A SCACCHI CON AZZURRINO CHIARISSIMO --- */
+            
+            /* Righe DISPARI */
+            table#anagrafe tr:nth-of-type(odd) td:nth-of-type(odd) {
+                background-color: #fafcff; /* Azzurrino chiarissimo, quasi bianco ma freddo */
+            }
+            table#anagrafe tr:nth-of-type(odd) td:nth-of-type(even) {
+                background-color: #f5effa; /* Lilla chiaro originale */
+            }
+
+            /* Righe PARI */
+            table#anagrafe tr:nth-of-type(even) td:nth-of-type(odd) {
+                background-color: #f5effa; /* Lilla chiaro originale */
+            }
+            table#anagrafe tr:nth-of-type(even) td:nth-of-type(even) {
+                background-color: #fafcff; /* Azzurrino chiarissimo, quasi bianco ma freddo */
+            }
+
+            /* Effetto al passaggio del mouse sulle righe */
+            table#anagrafe tbody tr:hover td {
+                background-color: #ebdff5 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            function aggiungi(){
+                const nome=document.getElementById("nomeTab").value;
+                const cognome=document.getElementById("cognomeTab").value;
+                const indirizzo=document.getElementById("indirizzoTab").value;
+                const città=document.getElementById("cittàTab").value;
+                const età=document.getElementById("etàTab").value;
+                 const tabella = document.getElementById("anagrafe");
+                const riga = document.createElement("tr");
+                const celle = "<td>" + nome + "</td>" + 
+                                     "<td>" + cognome + "</td>" + 
+                                     "<td>" + indirizzo + "</td>" + 
+                                     "<td>" + città + "</td>" + 
+                                     "<td>" + età + "</td>";
+                riga.innerHTML = celle;
+                tabella.appendChild(riga);
+                document.getElementById("nomeTab").value = "";
+                document.getElementById("cognomeTab").value = "";
+                document.getElementById("indirizzoTab").value = "";
+                document.getElementById("cittàTab").value = "";
+                document.getElementById("etàTab").value = "";
+            }
+        </script>
+        <h1>Tabella Anagrafica</h1>
+        <input type="text" id="nomeTab">
+        <input type="text" id="cognomeTab">
+        <input type="text" id="indirizzoTab">
+        <input type="text" id="cittàTab">
+        <input type="number" id="etàTab">
+        <button onclick="aggiungi()">Aggiungi</button>
+        <table id="anagrafe" border="1">
+        <tr>
+            <th><b>Nome</b></th>
+            <th><b>Cognome</b></th>
+            <th><b>Indirizzo</b></th>
+            <th><b>Citt&agrave;</b></th>
+            <th><b>Et&agrave;</b></th>
+        </tr>
+        </table>
+    </body>
+</html>
