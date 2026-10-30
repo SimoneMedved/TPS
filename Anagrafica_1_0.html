@@ -126,12 +126,21 @@
                 const età=document.getElementById("etàTab").value;
                  const tabella = document.getElementById("anagrafe");
                 const riga = document.createElement("tr");
-                const celle = "<td>" + nome + "</td>" + 
-                                     "<td>" + cognome + "</td>" + 
-                                     "<td>" + indirizzo + "</td>" + 
-                                     "<td>" + città + "</td>" + 
-                                     "<td>" + età + "</td>";
-                riga.innerHTML = celle;
+                const tNome = document.createElement("td");
+                tNome.appendChild(document.createTextNode(nome));
+                riga.appendChild(tNome);
+                const tCognome = document.createElement("td");
+                tCognome.appendChild(document.createTextNode(cognome));
+                riga.appendChild(tCognome);
+                const tIndirizzo = document.createElement("td");
+                tIndirizzo.appendChild(document.createTextNode(indirizzo));
+                riga.appendChild(tIndirizzo);
+                const tCittà = document.createElement("td");
+                tCittà.appendChild(document.createTextNode(città));
+                riga.appendChild(tCittà);
+                const tEtà= document.createElement("td");
+                tEtà.appendChild(document.createTextNode(età));
+                riga.appendChild(tEtà);
                 tabella.appendChild(riga);
                 document.getElementById("nomeTab").value = "";
                 document.getElementById("cognomeTab").value = "";
