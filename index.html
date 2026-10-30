@@ -2,72 +2,281 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito Moderno & Minimal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* Stili generali della pagina */
+        /* RESET & VARIABILI */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --font-main: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        header {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            background: rgba(11, 15, 25, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        .btn-nav {
+            background: var(--accent);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent-hover);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 4rem;
         }
 
-        /* Contenitore principale */
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            width: 350px;
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
         }
 
-        /* Titolo */
-        h1 {
-            font-size: 24px;
-            margin-top: 0;
-            color: #2c3e50;
-            border-bottom: 2px solid #eceff1;
-            padding-bottom: 10px;
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Lista */
-        ul {
-            list-style: none; /* Rimuove i pallini classici */
-            padding: 0;
-            margin: 0;
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
         }
 
-        /* Singolo elemento */
-        li {
-            padding: 12px 15px;
-            background-color: #f8f9fa;
-            margin-bottom: 8px;
-            border-radius: 6px;
-            border-left: 4px solid #3498db; /* Linea blu decorativa a sinistra */
-            transition: transform 0.2s, background-color 0.2s;
-            font-size: 16px;
+        .cta-group {
+            display: flex;
+            gap: 1rem;
         }
 
-        /* Effetto al passaggio del mouse */
-        li:hover {
-            background-color: #2e95e4;
-            transform: translateX(5px); /* Si sposta leggermente a destra */
-            cursor: pointer;
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s, border 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            padding: 8rem 5%;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* Semplificato per l'esempio */
+            .cta-group { flex-direction: column; width: 100%; padding: 0 2rem; }
+            .btn-primary, .btn-secondary { text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>I miei Lavori</h1>
-        <ul>
-            <li><a href="Anagrafica_1_0.html">Anagrafica 1.0</a></li>
-        </ul>
-    </div>
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">NEXTGEN</div>
+        <nav>
+            <ul>
+                <li><a href="#features">Funzionalità</a></li>
+                <li><a href="#">Chi Siamo</a></li>
+                <li><a href="#">Prezzi</a></li>
+                <li><a href="#" class="btn-nav">Inizia Ora</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Il futuro del web design digitale è <span>qui oggi</span></h1>
+        <p>Crea interfacce straordinarie, ottimizzate per la conversione e pronte per stupire i tuoi utenti fin dal primo secondo.</p>
+        <div class="cta-group">
+            <a href="#features" class="btn-primary">Scopri di più</a>
+            <a href="#" class="btn-secondary">Guarda il video</a>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+        <h2 class="section-title">Perché sceglierci</h2>
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <span class="card-icon">⚡</span>
+                <h3>Performance Ultra</h3>
+                <p>Codice ottimizzato nei minimi dettagli per garantire caricamenti istantanei su qualsiasi dispositivo.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <span class="card-icon">🎨</span>
+                <h3>Design Pulito</h3>
+                <p>Un'estetica moderna basata sul minimalismo e sulla leggibilità dei contenuti importanti.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <span class="card-icon">📱</span>
+                <h3>100% Responsive</h3>
+                <p>Perfettamente adattabile a smartphone, tablet e desktop senza alcuna perdita di qualità.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 NEXTGEN. Tutti i diritti riservati.</p>
+    </footer>
 
 </body>
 </html>
