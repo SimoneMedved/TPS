@@ -106,7 +106,7 @@
     </head>
     <body>
         <script>function somma(){
-            if(document.getElementById("num1").value==="" || document.getElementById("num2").value==="0"){
+            if(document.getElementById("num1").value=="" || document.getElementById("num2").value==""){
                 document.getElementById("risultato").innerText="1";
                 return;
             }
@@ -116,7 +116,7 @@
             document.getElementById("risultato").innerText=risultato;
         }
         function sottrazione(){
-            if(document.getElementById("num1").value==="" || document.getElementById("num2").value==="0"){
+            if(document.getElementById("num1").value=="" || document.getElementById("num2").value==""){
                 document.getElementById("risultato").innerText="1";
                 return;
             }
@@ -126,7 +126,7 @@
             document.getElementById("risultato").innerText=risultato;
         }
         function moltiplicazione(){
-            if(document.getElementById("num1").value==="" || document.getElementById("num2").value==="0"){
+            if(document.getElementById("num1").value=="" || document.getElementById("num2").value==""){
                 document.getElementById("risultato").innerText="1";
                 return;
             }
@@ -136,16 +136,12 @@
             document.getElementById("risultato").innerText=risultato;
         }
         function divisione(){
-            if(document.getElementById("num1").value==="" || document.getElementById("num2").value==="0"){
+            if(document.getElementById("num1").value=="" || document.getElementById("num2").value=="0"){
                 document.getElementById("risultato").innerText="1";
                 return;
             }
             const n1=parseFloat(document.getElementById("num1").value);
             const n2=parseFloat(document.getElementById("num2").value);
-            if(n2===0){
-                document.getElementById("risultato").innerText="1";
-                return;
-            }
             const risultato=n1/n2;
             document.getElementById("risultato").innerText=risultato;
         }
