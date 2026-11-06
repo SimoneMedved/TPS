@@ -142,9 +142,10 @@
                 risultato = n1 * n2;
                 break;
             case "divisione":
-                risultato =Math.round(n1/n2*100)/100;
+                risultato =n1/n2;
                 break;
             }
+            risultato=Math.round(risultato*100)/100;
             document.getElementById("risultato").innerText=risultato;
         }
         </script>
