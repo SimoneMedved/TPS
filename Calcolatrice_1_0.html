@@ -131,14 +131,19 @@
                 return;
             }
             let risultato = 0;
-            if(operazione=="somma"){
-                risultato=n1+n2;
-            }else if(operazione=="sottrazione"){
-                risultato=n1-n2;
-            }else if(operazione=="moltiplicazione"){
-                risultato=n1*n2;
-            }else if(operazione=="divisione"){
-                risultato=n1/n2;
+            switch(operazione) {
+            case "somma":
+                risultato = n1 + n2;
+                break;
+            case "sottrazione":
+                risultato = n1 - n2;
+                break;
+            case "moltiplicazione":
+                risultato = n1 * n2;
+                break;
+            case "divisione":
+                risultato =Math.round(n1/n2*100)/100;
+                break;
             }
             document.getElementById("risultato").innerText=risultato;
         }
