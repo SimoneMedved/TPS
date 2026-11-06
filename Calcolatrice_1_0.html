@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <title>Calcolatrice</title>
+        <style>
+            /* Reset e Stile Globale della Pagina */
+            * {
+                box-sizing: border-box;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            }
+
+            body {
+                background-color: #e0e8f0;
+                color: #3a4750;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 20px;
+            }
+
+            /* Titolo */
+            h1 {
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #2b364c;
+                margin-bottom: 30px;
+                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            }
+
+            /* Campi di Input (num1 e num2) */
+            input[type="text"] {
+                width: 280px;
+                padding: 15px;
+                margin-bottom: 15px;
+                border: none;
+                border-radius: 12px;
+                background: #e0e8f0;
+                box-shadow: inset 6px 6px 10px #cad4e0, 
+                            inset -6px -6px 10px #ffffff;
+                color: #2b364c;
+                font-size: 1.2rem;
+                text-align: right;
+                outline: none;
+                transition: box-shadow 0.3s ease;
+            }
+
+            input[type="text"]:focus {
+                box-shadow: inset 4px 4px 6px #cad4e0, 
+                            inset -4px -4px 6px #ffffff,
+                            0 0 0 2px #4d96ff;
+            }
+
+            /* Pulsanti Operatori costretti sulla stessa riga */
+            button {
+                width: 62px;
+                height: 55px;
+                border: none;
+                border-radius: 12px;
+                background: #e0e8f0;
+                box-shadow: 6px 6px 12px #cad4e0, 
+                            -6px -6px 12px #ffffff;
+                color: #4d96ff;
+                font-size: 1.4rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                
+                /* Rende i pulsanti elementi flessibili sulla stessa riga */
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin: 10px 4px 25px 4px;
+            }
+
+            button:hover {
+                color: #247bfa;
+                box-shadow: 3px 3px 6px #cad4e0, 
+                            -3px -3px 6px #ffffff;
+            }
+
+            button:active {
+                box-shadow: inset 4px 4px 8px #cad4e0, 
+                            inset -4px -4px 8px #ffffff;
+                transform: scale(0.98);
+            }
+
+            /* Area Risultato */
+            p#risultato {
+                width: 280px;
+                min-height: 60px;
+                margin-top: 15px;
+                padding: 16px;
+                background: #4d96ff;
+                border-radius: 12px;
+                box-shadow: 4px 4px 12px rgba(77, 150, 255, 0.3), 
+                            inset 2px 2px 4px rgba(255, 255, 255, 0.4);
+                color: #ffffff;
+                font-size: 1.6rem;
+                font-weight: 700;
+                text-align: right;
+                word-wrap: break-word;
+            }
+        </style>
+    </head>
+    <body>
+        <script>function somma(){
+            const n1=parseFloat(document.getElementById("num1").value);
+            const n2=parseFloat(document.getElementById("num2").value);
+            const risultato=n1+n2;
+            document.getElementById("risultato").innerText=risultato;
+        }
+        function sottrazione(){
+            const n1=parseFloat(document.getElementById("num1").value);
+            const n2=parseFloat(document.getElementById("num2").value);
+            const risultato=n1-n2;
+            document.getElementById("risultato").innerText=risultato;
+        }
+        function moltiplicazione(){
+            const n1=parseFloat(document.getElementById("num1").value);
+            const n2=parseFloat(document.getElementById("num2").value);
+            const risultato=n1*n2;
+            document.getElementById("risultato").innerText=risultato;
+        }
+        function divisione(){
+            const n1=parseFloat(document.getElementById("num1").value);
+            const n2=parseFloat(document.getElementById("num2").value);
+            if(n2===0){
+                document.getElementById("risultato").innerText="1";
+                return;
+            }
+            const risultato=n1/n2;
+            document.getElementById("risultato").innerText=risultato;
+        }
+        </script>
+        <h1>Calcolatrice</h1>
+         <input type="text" id="num1"><br>
+        <input type="text" id="num2"><br>
+        <button onclick="somma()">+</button>
+        <button onclick="sottrazione()">-</button>
+        <button onclick="moltiplicazione()">*</button>
+        <button onclick="divisione()">/</button>
+        <p id="risultato"></p>
+    </body>
+</html>
