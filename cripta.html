@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>Cifrario di Cesare</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 15px 0 6px 0;
+            color: #2c3e50;
+        }
+
+        input {
+            width: 280px;
+            padding: 10px 14px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            background-color: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        button {
+            margin-top: 10px;
+            width: 280px;
+            padding: 12px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #2563eb;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #cifrato {
+            margin-top: 25px;
+            padding: 15px 20px;
+            min-width: 240px;
+            min-height: 24px;
+            background-color: #ffffff;
+            border: 2px dashed #94a3b8;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0f172a;
+            text-align: center;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function cifra(frase, chiave) {
+            var fraseCifrata = "";
+            var codice = 0;
+            for (var i = 0; i < frase.length; i++) {
+                codice = frase.charCodeAt(i);
+                if (codice >= 65 && codice <= 90) {
+                    codice = ((codice - 65 + parseInt(document.getElementById("chiave").value)) % 26) + 65;
+                } else if (codice >= 97 && codice <= 122) { 
+                    codice = ((codice - 97 + parseInt(document.getElementById("chiave").value)) % 26) + 97;
+                }
+                fraseCifrata += String.fromCharCode(codice);
+            }
+
+            document.getElementById("cifrato").innerHTML = fraseCifrata;
+        }
+    </script>
+
+    <p>inserisci una frase: </p>
+    <input type="text" id="frase"></input>
+
+    <p>inserisci una chiave: </p>
+    <input type="number" id="chiave"></input>
+
+    <br>
+
+    <button onclick="cifra(document.getElementById('frase').value, document.getElementById('chiave').value)">Cifra</button>
+
+    <p id="cifrato"> </p>
+</body>
+</html>
