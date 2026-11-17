@@ -2,14 +2,137 @@
 <head> 
     <title>Decifratore di Cesare</title> 
     <style> 
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #333; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; } 
-        p { font-size: 16px; font-weight: 600; margin: 15px 0 6px 0; color: #2c3e50; } 
-        input { width: 280px; padding: 10px 14px; border: 2px solid #cbd5e1; border-radius: 8px; font-size: 16px; outline: none; background-color: #ffffff; transition: border-color 0.2s, box-shadow 0.2s; } 
-        input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); } 
-        button { margin-top: 10px; width: 280px; padding: 12px; background-color: #3b82f6; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s, transform 0.1s; } 
-        button:hover { background-color: #2563eb; } 
-        button:active { transform: scale(0.98); } 
-        #decifrato { margin-top: 25px; padding: 15px 20px; min-width: 240px; min-height: 24px; background-color: #ffffff; border: 2px dashed #94a3b8; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: bold; color: #0f172a; text-align: center; word-break: break-all; } 
+        * {
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+            color: #1e293b; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+        } 
+
+        /* Etichette (p) */
+        p:not(#decifrato) { 
+            width: 100%;
+            max-width: 340px;
+            font-size: 14px; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 6px 0; 
+            color: #475569; 
+            text-align: left;
+        } 
+
+        p:first-of-type::before {
+            content: "🔐 Decifratore di Cesare";
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: none;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        /* Campi di input */
+        input { 
+            width: 100%;
+            max-width: 340px; 
+            padding: 12px 16px; 
+            border: 2px solid #cbd5e1; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            outline: none; 
+            background-color: #ffffff; 
+            color: #0f172a;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease; 
+        } 
+
+        input:focus { 
+            border-color: #4f46e5; 
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15); 
+        } 
+
+        /* Nasconde i <br> superflui per gestire meglio gli spazi */
+        br {
+            display: none;
+        }
+
+        /* Pulsante principale */
+        button { 
+            margin-top: 22px; 
+            width: 100%;
+            max-width: 340px; 
+            padding: 14px; 
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%); 
+            color: white; 
+            border: none; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+            cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            transition: all 0.2s ease; 
+        } 
+
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+        } 
+
+        button:active { 
+            transform: translateY(0); 
+        } 
+
+        /* Box risultato */
+        #decifrato { 
+            margin-top: 24px; 
+            padding: 18px 20px; 
+            width: 100%;
+            max-width: 340px; 
+            min-height: 58px; 
+            background-color: #ffffff; 
+            border: 2px dashed #94a3b8; 
+            border-radius: 10px; 
+            font-family: 'Consolas', 'Courier New', monospace; 
+            font-size: 18px; 
+            font-weight: bold; 
+            color: #0f172a; 
+            text-align: center; 
+            word-break: break-all; 
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+        } 
+
+        /* Link di ritorno */
+        a {
+            margin-top: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4f46e5;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            background-color: rgba(79, 70, 229, 0.1);
+            color: #3730a3;
+        }
     </style> 
 </head> 
 <body> 
@@ -19,19 +142,16 @@
             var codice = 0; 
             for (var i = 0; i < frase.length; i++) { 
                 codice = frase.charCodeAt(i); 
-                
                 if (codice >= 65 && codice <= 90) { 
                     codice = ((codice - 65 - (parseInt(document.getElementById("chiave").value) % 26) + 26) % 26) + 65; 
                 } else if (codice >= 97 && codice <= 122) { 
                     codice = ((codice - 97 - (parseInt(document.getElementById("chiave").value) % 26) + 26) % 26) + 97; 
                 } 
-                
                 fraseDecifrata += String.fromCharCode(codice); 
             } 
             document.getElementById("decifrato").innerHTML = fraseDecifrata; 
         } 
     </script> 
-
     <p>inserisci la frase cifrata: </p> 
     <input type="text" id="frase"></input> 
     <p>inserisci la chiave: </p> 
@@ -39,7 +159,7 @@
     <br> 
     <button onclick="decifra(document.getElementById('frase').value, document.getElementById('chiave').value)">Decifra</button> 
     <p id="decifrato"> </p> 
-    <br>
-    <a href="https://simonemedved.github.io/TPS/Cripta_1_0.html">Torna alla pagina originale</a>
+    <br> 
+    <a href="https://simonemedved.github.io/TPS/Cripta_1_0.html">Torna alla pagina originale</a> 
 </body> 
 </html>
